@@ -12,7 +12,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 
-  .buttons-div > submit{
+  .buttons-div > button{
     background-color: grey;
     font-family: 'Roboto', sans-serif;
     font-size: 18px;
@@ -28,6 +28,7 @@
   /* Style des éléments cochés de la to-do list */
   .todo-item.checked {
     text-decoration: line-through;
+    font-family: 'Roboto',sans-serif;
     color: grey;
   }
 
