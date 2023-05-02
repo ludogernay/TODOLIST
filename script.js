@@ -5,6 +5,7 @@ var AllTask = JSON.parse(localStorage.getItem("AllTask")) || {task1: task1, task
 var ul = document.getElementById("alltask");
 var add = document.getElementById("add");
 var addtask = document.getElementById("newtask");
+var ID = localStorage.getItem("ID") || 4;
 
 add.addEventListener("click", function(event){
     event.preventDefault();
@@ -28,31 +29,33 @@ function DisplayTask(){
                 DeleteTask(id);
             });
         });
-        var done = document.querySelectorAll(".done");
-        done.forEach(function(element){
-            element.addEventListener("change", function(event){
-                var id = this.getAttribute("data-id");
-                console.log(element.checked);
-                if(element.checked){
-                    element.checked = false;
-                    UnDoneTask(id);
-                }else{
-                    element.checked = true;
-                    DoneTask(id);
-                }
-            });
-        });
-    });
+        // var done = document.querySelectorAll(".done");
+        // done.forEach(function(element){
+        //     element.addEventListener("change", function(event){
+        //         var id = this.getAttribute("data-id");
+        //         console.log(element.checked);
+        //         if(element.checked){
+        //             element.checked = false;
+        //             UnDoneTask(id);
+        //         }else{
+        //             element.checked = true;
+        //             DoneTask(id);
+        //         }
+        //     });
+    //     });
+     });
     console.log(AllTask);
 }
 function AddTask(){
-    var newtask = {id : (Object.keys(AllTask).length+1), title : addtask.value, completed : false};
+    var newtask = {id : ID, title : addtask.value, completed : false};
     var key = "task" + newtask.id;
     AllTask[key] = newtask;
     localStorage.setItem("AllTask", JSON.stringify(AllTask));
     ul.innerHTML = "";
     DisplayTask();
     addtask.value = "";
+    ID++;
+    localStorage.setItem("ID", ID);
 }
 function DeleteTask(id){
     console.log(id);
