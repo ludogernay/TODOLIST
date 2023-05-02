@@ -1,0 +1,50 @@
+* {
+    background-color: #ffed75;
+    padding: 10px;
+  }
+  
+  /* Style des éléments de la to-do list */
+  .todo-item {
+    margin: 10px 0;
+    padding: 5px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  .buttons-div > submit{
+    background-color: grey;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 20px;
+    font-weight: 300;
+    outline: none;
+    box-shadow:5px, 2px, 2px, black;
+}
+
+  /* Style des éléments cochés de la to-do list */
+  .todo-item.checked {
+    text-decoration: line-through;
+    color: grey;
+  }
+
+    .buttons-div > button{
+    color:#ffffff;
+    background-color: grey;
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    margin: 20px;
+    font-weight: 300;
+    outline: none;
+    box-shadow:5px, 2px, 2px, black;
+}
+
+.champ{
+    background-color: #ffffff;
+}
