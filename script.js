@@ -15,10 +15,10 @@ DisplayTask();
 function DisplayTask(){
     Object.keys(AllTask).forEach(function(key){
         ul.innerHTML += `
-            <li> 
-                ${AllTask[key].title} 
+            <li id="task-${AllTask[key].id}"> 
+                <span style="text-decoration : ${AllTask[key].completed ? "line-through" : "none"}">${AllTask[key].title}</span> 
                 <button data-id='${AllTask[key].id}' class="del" >Delete</button>
-                <input data-id='${AllTask[key].id}' class="done" type="checkbox">
+                <input data-id='${AllTask[key].id}' data-check='${AllTask[key].completed}' class="done" type="checkbox" ${AllTask[key].completed ? "checked" : ""}>
             </li>
         `;
         var del = document.querySelectorAll(".del");
@@ -29,23 +29,27 @@ function DisplayTask(){
                 DeleteTask(id);
             });
         });
-        // var done = document.querySelectorAll(".done");
-        // done.forEach(function(element){
-        //     element.addEventListener("change", function(event){
-        //         var id = this.getAttribute("data-id");
-        //         console.log(element.checked);
-        //         if(element.checked){
-        //             element.checked = false;
-        //             UnDoneTask(id);
-        //         }else{
-        //             element.checked = true;
-        //             DoneTask(id);
-        //         }
-        //     });
-    //     });
+        var done = document.querySelectorAll(".done");
+        done.forEach(function(element){
+            element.addEventListener('click', function(event){
+                var id = this.getAttribute("data-id");
+                var check = this.getAttribute("data-check");
+                var li = document.querySelector(`#task-${id}`);
+                console.log(li)
+                if(check=="true"){
+                    li.classList.remove('todo-item-checked');
+                    UnDoneTask(id);
+                }else if(check=="false"){
+                    li.classList.add('todo-item-checked');
+                    DoneTask(id);
+                }
+            });
+        });
      });
     console.log(AllTask);
 }
+
+
 function AddTask(){
     var newtask = {id : ID, title : addtask.value, completed : false};
     var key = "task" + newtask.id;
@@ -66,7 +70,7 @@ function DeleteTask(id){
     DisplayTask();
 }
 function DoneTask(id){
-    console.log(id);
+    console.log("donetask");
     var key = "task" + id;
     AllTask[key].completed = true;
     localStorage.setItem("AllTask", JSON.stringify(AllTask));
@@ -74,7 +78,7 @@ function DoneTask(id){
     DisplayTask();
 }
 function UnDoneTask(id){
-    console.log(id);
+    console.log("undonetask");
     var key = "task" + id;
     AllTask[key].completed = false;
     localStorage.setItem("AllTask", JSON.stringify(AllTask));

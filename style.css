@@ -26,10 +26,10 @@
 }
 
   /* Style des éléments cochés de la to-do list */
-  .todo-item.checked {
+  .todo-item-checked {
     text-decoration: line-through;
     font-family: 'Roboto',sans-serif;
-    color: grey;
+    color: rgb(117, 24, 24);
   }
 
     .buttons-div > button{
